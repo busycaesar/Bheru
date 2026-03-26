@@ -1,5 +1,7 @@
 # Workflow Skills
 
+<img width="1000" alt="Gemini_Generated_Image_sg5tbgsg5tbgsg5t" src="https://github.com/user-attachments/assets/082f1508-59c0-4868-a8e5-0fb440b3859f" />
+
 ## Description
 
 This repo is a curated set of custom skills (`.mdc` files) that cover the full software development lifecycle — from writing a spec and breaking work into a plan, to executing implementation via sub-agents, running code reviews, writing tests, and creating pull requests. Each skill is a structured prompt that guides Claude through a specific workflow phase with clear inputs, outputs, and acceptance criteria.
