@@ -1,18 +1,13 @@
-<!-- Remove the following content when using this template for create repo for project! -->
-This repository serves as a template for all my future project repositories. It contains the common structure, configurations, and files that I use across my projects. The purpose of this repository template is to maintain consistency and standardization across my projects. By using this template, I ensure that all my repositories follow a similar structure and setup, making it easier to manage and maintain them.
-
-While this template is primarily for personal use, contributions and suggestions for improvements are always welcome. If you have ideas for enhancing the template or making it more useful, feel free to submit a pull request or open an issue.
-<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXS -->
-
-# Project Title
+# Workflow Skills
 
 ## Description
 
-### Video Explanation
-[![Video Explanation YouTube Link](https://img.youtube.com/vi/t93d8ieZn0Q/0.jpg)](https://www.youtube.com/embed/t93d8ieZn0Q)
+This repo is a curated set of custom skills (`.mdc` files) that cover the full software development lifecycle — from writing a spec and breaking work into a plan, to executing implementation via sub-agents, running code reviews, writing tests, and creating pull requests. Each skill is a structured prompt that guides Claude through a specific workflow phase with clear inputs, outputs, and acceptance criteria.
+
+The skills are designed to work together as a pipeline: `spec.mdc` defines the work, `plan.mdc` grounds it in the codebase, `implement.mdc` executes it step by step, and `verify.mdc` confirms everything passes before the ticket is closed. Supporting skills like `code-review.mdc`, `unit_tests.mdc`, `pr-create.mdc`, and `jira-ticket-workflow.mdc` handle the surrounding dev process.
 
 ## Tech Stack
-![Image Alt](https://skillicons.dev/icons?i=js,ts)
+![Image Alt](https://skillicons.dev/icons?i=md)
 
 ## How it looks?
 
@@ -21,4 +16,4 @@ While this template is primarily for personal use, contributions and suggestions
 ## How to run the project?
 
 ## Author
-[Dev Shah](https://github.com/busycaesar)
+[Dev J. Shah](https://github.com/busycaesar)
