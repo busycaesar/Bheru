@@ -1,7 +1,6 @@
 # Workflow Skills
 
-<img width="1500" height="1440" alt="banner" src="https://github.com/user-attachments/assets/5156d78e-9fb3-4a59-9c6d-2e543e961c61" />
-
+<img width="1500" alt="Gemini_Generated_Image_os89sfos89sfos89" src="https://github.com/user-attachments/assets/51566a54-1e66-4906-8961-f980f69e8352" />
 
 ## Description
 
