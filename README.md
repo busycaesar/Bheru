@@ -1,7 +1,7 @@
 # SDLC Skills
 
 <p align="center">
-  <img width="900" alt="banner" src="https://github.com/user-attachments/assets/51566a54-1e66-4906-8961-f980f69e8352" />
+  <img width="800" alt="Banner" src="https://github.com/user-attachments/assets/61d1c02c-9694-4441-a3fa-74b536e4e194" />
 </p>
 
 ## Description
