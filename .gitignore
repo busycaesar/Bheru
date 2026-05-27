@@ -1,3 +1,11 @@
+# Go binary
+/bheru
+
+# Go
+*.test
+*.out
+vendor/
+
 # Logs
 logs
 *.log
