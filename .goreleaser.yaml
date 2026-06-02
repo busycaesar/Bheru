@@ -1,0 +1,45 @@
+version: 2
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - id: bheru
+    main: ./cmd/bheru
+    binary: bheru
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+
+archives:
+  - formats: [tar.gz]
+    name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}"
+    format_overrides:
+      - goos: windows
+        formats: [zip]
+
+brews:
+  - name: bheru
+    repository:
+      owner: busycaesar
+      name: homebrew-bheru
+    homepage: "https://github.com/busycaesar/bheru"
+    description: "Distribute AI skill files to Claude Code"
+    install: |
+      bin.install "bheru"
+    test: |
+      system "#{bin}/bheru", "--version"
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
