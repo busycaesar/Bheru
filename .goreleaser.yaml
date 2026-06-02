@@ -1,5 +1,7 @@
 version: 2
 
+project_name: bheru
+
 before:
   hooks:
     - go mod tidy
@@ -25,17 +27,24 @@ archives:
       - goos: windows
         formats: [zip]
 
-brews:
+homebrew_casks:
   - name: bheru
+    binaries:
+      - bheru
     repository:
       owner: busycaesar
       name: homebrew-bheru
     homepage: "https://github.com/busycaesar/bheru"
     description: "Distribute AI skill files to Claude Code"
-    install: |
-      bin.install "bheru"
-    test: |
-      system "#{bin}/bheru", "--version"
+    # Strip the macOS quarantine attribute on install so that the
+    # unsigned/un-notarized binary isn't blocked by Gatekeeper.
+    # Remove this hook once the binary is properly signed and notarized.
+    hooks:
+      post:
+        install: |
+          if OS.mac?
+            system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{staged_path}/bheru"]
+          end
 
 changelog:
   sort: asc
