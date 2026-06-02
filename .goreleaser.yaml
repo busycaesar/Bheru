@@ -33,7 +33,7 @@ homebrew_casks:
       - bheru
     repository:
       owner: busycaesar
-      name: homebrew-bheru
+      name: Bhreu
     homepage: "https://github.com/busycaesar/bheru"
     description: "Distribute AI skill files to Claude Code"
     # Strip the macOS quarantine attribute on install so that the
