@@ -1,75 +1,22 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-REPO="${BHERU_REPO:-busycaesar/Bheru}"
-BRANCH="${BHERU_BRANCH:-Master}"
-OUTPUT_DIR="${BHERU_OUTPUT_DIR:-.}"
-
-usage() {
-  cat <<EOF
-Usage: $(basename "$0") [OPTIONS]
-
-Install files from the Bheru GitHub repo, excluding paths listed in .distignore.
-Only the files you need are downloaded (requires Git).
-
-Options:
-  -d, --dir DIR       Output directory (default: current directory)
-  -r, --repo OWNER/REPO
-                      GitHub repository (default: ${REPO})
-  -b, --branch BRANCH
-                      Branch to install (default: ${BRANCH})
-  -h, --help          Show this help message
-
-Environment:
-  BHERU_REPO          Same as --repo
-  BHERU_BRANCH        Same as --branch
-  BHERU_OUTPUT_DIR    Same as --dir
-
-Example:
-  curl -fsSL https://raw.githubusercontent.com/${REPO}/${BRANCH}/install.sh | bash
-  ./install.sh --dir ~/.cursor/rules
-EOF
-}
-
-while [[ $# -gt 0 ]]; do
-  case "$1" in
-    -d|--dir)
-      OUTPUT_DIR="$2"
-      shift 2
-      ;;
-    -r|--repo)
-      REPO="$2"
-      shift 2
-      ;;
-    -b|--branch)
-      BRANCH="$2"
-      shift 2
-      ;;
-    -h|--help)
-      usage
-      exit 0
-      ;;
-    *)
-      echo "Unknown option: $1" >&2
-      usage >&2
-      exit 1
-      ;;
-  esac
-done
+REPO="busycaesar/Bheru"
+BRANCH="Master"
+OUTPUT_DIR="$(pwd)"
 
 if ! command -v git >/dev/null 2>&1; then
   echo "Error: git is required." >&2
   exit 1
 fi
 
-REPO_URL="https://github.com/${REPO}.git"
 TMP_DIR="$(mktemp -d)"
 trap 'rm -rf "$TMP_DIR"' EXIT
 
 export GIT_TERMINAL_PROMPT=0
 
-echo "Fetching file list from ${REPO} (${BRANCH})..."
-git clone -q --depth 1 --filter=blob:none --no-checkout -b "$BRANCH" "$REPO_URL" "$TMP_DIR/repo"
+git clone -q --depth 1 --filter=blob:none --no-checkout \
+  -b "$BRANCH" "https://github.com/${REPO}.git" "$TMP_DIR/repo"
 
 cd "$TMP_DIR/repo"
 
@@ -128,15 +75,10 @@ if [[ ${#files_to_install[@]} -eq 0 ]]; then
   exit 1
 fi
 
-echo "Downloading ${#files_to_install[@]} file(s)..."
 git checkout HEAD -- "${files_to_install[@]}"
 
-mkdir -p "$OUTPUT_DIR"
-OUTPUT_DIR="$(cd "$OUTPUT_DIR" && pwd)"
-
 for relpath in "${files_to_install[@]}"; do
-  dest="${OUTPUT_DIR}/${relpath}"
-  mkdir -p "$(dirname "$dest")"
+  dest="${OUTPUT_DIR}/${relpath##*/}"
   cp "$relpath" "$dest"
 done
 
